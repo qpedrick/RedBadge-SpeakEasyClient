@@ -10,7 +10,6 @@ export default class Register extends Component {
             lastName: '',
             email: '',
             password: '',
-            role: ''
         }
     }
 
@@ -31,7 +30,12 @@ export default class Register extends Component {
             })
         })
         .then((res) => res.json())
-        .then((data) => console.log(data))
+        .then((data) => {
+            console.log(data)
+            localStorage.setItem('role', data.user.role);
+            localStorage.setItem('sessionToken', data.sessionToken)
+        })
+        .then(() => this.props.props())
         .catch(err => console.log(err))
     }
 

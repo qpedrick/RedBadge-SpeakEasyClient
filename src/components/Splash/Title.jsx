@@ -5,7 +5,8 @@ import {Col, Button, Row} from 'reactstrap'
 export default class Title extends React.Component {
 
     clearLocal = (event) => {
-        localStorage.clear()
+        localStorage.clear();
+        this.props.props()
     }
 
 

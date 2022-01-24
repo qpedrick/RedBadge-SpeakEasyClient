@@ -8,8 +8,6 @@ export default class Register extends Component {
         this.state = {
             email: '',
             password: '',
-            role: '',
-            sessionToken: '',
         }
     }
 
@@ -29,14 +27,13 @@ export default class Register extends Component {
         })
         .then((res) => res.json())
         .then((data) => {
-            console.log(data);
-            this.setState({role: data.role});
+            //console.log(data);
             localStorage.setItem('role', data.role);
-            this.setState({sessionToken: data.sessionToken});
             localStorage.setItem('sessionToken', data.sessionToken);
         })
-        //.then((data) => localStorage.setItem('role', data.role))
+        .then(() => this.props.props())
         .catch(err => console.log(err))
+        
     }
 
     handleChange = (event) => {
@@ -49,7 +46,7 @@ export default class Register extends Component {
         return(
             <>
             <h1>Login</h1>
-            <Form onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit} >
                 <Row>
                 <FormGroup>
                     <Label htmlFor='email'>Email</Label>
