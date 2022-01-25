@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class Jobs extends React.Component {
     constructor(props){
@@ -20,7 +21,7 @@ export default class Jobs extends React.Component {
 
         handleSubmit = (event) => {
         event.preventDefault()
-        fetch("http://localhost:7770/job/create", {
+        fetch(`${APIURL}job/create`, {
             method: "POST",
             body: JSON.stringify({
                     company: this.state.company,
@@ -48,7 +49,7 @@ export default class Jobs extends React.Component {
     }
 
     getMyJobs = () => {
-        fetch('http://localhost:7770/job/mine', {
+        fetch(`${APIURL}job/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ export default class Jobs extends React.Component {
 
     deleteJob = (event, jobId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/job/${jobId}`, {
+        fetch(`${APIURL}job/${jobId}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -79,7 +80,7 @@ export default class Jobs extends React.Component {
 
     updateJob = (event, jobId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/job/${jobId}`, {
+        fetch(`${APIURL}job/${jobId}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class AdminUsers extends React.Component {
     constructor(){
@@ -10,7 +11,7 @@ export default class AdminUsers extends React.Component {
     }
 
     getUsers = () => {
-        fetch('http://localhost:7770/user/', {
+        fetch(`${APIURL}user/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -28,7 +29,7 @@ export default class AdminUsers extends React.Component {
 
     deleteUser = (event, userId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/user/${userId}`, {
+        fetch(`${APIURL}user/${userId}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -44,7 +45,7 @@ export default class AdminUsers extends React.Component {
 
     makeMember = (event, userId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/user/${userId}`, {
+        fetch(`${APIURL}user/${userId}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -63,7 +64,7 @@ export default class AdminUsers extends React.Component {
 
     makeGeneral = (event, userId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/user/${userId}`, {
+        fetch(`${APIURL}user/${userId}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -82,7 +83,7 @@ export default class AdminUsers extends React.Component {
 
     makeAdmin = (event, userId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/user/${userId}`, {
+        fetch(`${APIURL}user/${userId}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',

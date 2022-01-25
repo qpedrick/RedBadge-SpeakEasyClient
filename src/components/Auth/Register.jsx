@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form, FormGroup, Label, Input, Button, Col, Row } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 
 export default class Register extends Component {
@@ -15,7 +16,7 @@ export default class Register extends Component {
 
     handleSubmit = (event) => {
         event.preventDefault()
-        fetch("http://localhost:7770/user/register", {
+        fetch(`${APIURL}user/register`, {
             method: "POST",
             body: JSON.stringify({
                 user: {

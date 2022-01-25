@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class Story extends React.Component {
     constructor(props){
@@ -10,7 +11,7 @@ export default class Story extends React.Component {
     }
     
     getStories = () => {
-        fetch('http://localhost:7770/story/', {
+        fetch(`${APIURL}story/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'

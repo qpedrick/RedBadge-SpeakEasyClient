@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Row, Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class AdminStories extends React.Component {
     constructor(props){
@@ -10,7 +11,7 @@ export default class AdminStories extends React.Component {
     }
     
     getStories = () => {
-        fetch('http://localhost:7770/story/', {
+        fetch(`${APIURL}story/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -24,7 +25,7 @@ export default class AdminStories extends React.Component {
 
     deleteStory = (event, storyId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/story/admin/${storyId}`, {
+        fetch(`${APIURL}story/admin/${storyId}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json'

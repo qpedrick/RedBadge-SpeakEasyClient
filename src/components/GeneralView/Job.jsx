@@ -1,5 +1,6 @@
 import React from 'react';
 import { Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class Job extends React.Component {
     constructor(props){
@@ -10,7 +11,7 @@ export default class Job extends React.Component {
     }
     
     getJobs = () => {
-        fetch('http://localhost:7770/job/', {
+        fetch(`${APIURL}job/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Col, Row, Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class AdminJobs extends React.Component {
     constructor(props){
@@ -10,7 +11,7 @@ export default class AdminJobs extends React.Component {
     }
     
     getJobs = () => {
-        fetch('http://localhost:7770/job/', {
+        fetch(`${APIURL}job/`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -29,7 +30,7 @@ export default class AdminJobs extends React.Component {
 
     deleteJob = (event, jobId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/job/admin/${jobId}`, {
+        fetch(`${APIURL}job/admin/${jobId}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json'

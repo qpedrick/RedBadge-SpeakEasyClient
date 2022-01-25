@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap';
+import APIURL from '../../helpers/environment';
 
 export default class Stories extends React.Component {
     constructor(props){
@@ -16,7 +17,7 @@ export default class Stories extends React.Component {
 
         handleSubmit = (event) => {
         event.preventDefault()
-        fetch("http://localhost:7770/story/create", {
+        fetch(`${APIURL}story/create`, {
             method: "POST",
             body: JSON.stringify({
                     title: this.state.title,
@@ -42,7 +43,7 @@ export default class Stories extends React.Component {
     }
 
     getMyStories = () => {
-        fetch('http://localhost:7770/story/mine', {
+        fetch(`${APIURL}story/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ export default class Stories extends React.Component {
 
     deleteStory = (event, storyId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/story/${storyId}`, {
+        fetch(`${APIURL}story/${storyId}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -75,7 +76,7 @@ export default class Stories extends React.Component {
 
     updateStory = (event, storyId) => {
         event.preventDefault()
-        fetch(`http://localhost:7770/story/${storyId}`, {
+        fetch(`${APIURL}story/${storyId}`, {
             method: 'PUT',
             headers: new Headers({
                 'Content-Type': 'application/json',
