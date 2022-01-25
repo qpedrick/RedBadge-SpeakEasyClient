@@ -16,6 +16,7 @@ export default class GenInfo extends React.Component {
                         <p style = {{textAlign: 'right'}}>Please register for a new account.  Here you will be able to view our members' stories and job postings!</p>
                         <p style = {{textAlign: 'left', fontStyle: 'italic'}}>Once you sign up:</p>
                         <p style = {{textAlign: 'right'}}>Once you sign up, you will be able to create your own stories and share job postings!</p>
+                        <h6>Thank god this deployed</h6>
                     </Col>
                 </Row>
             </Container>
