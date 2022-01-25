@@ -20,7 +20,6 @@ class App extends React.Component {
       if(localStorage.getItem('role') === 'general'){
         return(
           <>
-          <h1>General View</h1>
           <General/>
           </>
         )

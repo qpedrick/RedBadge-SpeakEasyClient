@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import { Button, Col, Row, Card, CardTitle, CardBody, CardText } from 'reactstrap';
 
-export default class Job extends React.Component {
+export default class AdminJobs extends React.Component {
     constructor(props){
         super(props)
         this.state = {
@@ -27,12 +27,26 @@ export default class Job extends React.Component {
         return this.getJobs()
     }
 
+    deleteJob = (event, jobId) => {
+        event.preventDefault()
+        fetch(`http://localhost:7770/job/admin/${jobId}`, {
+            method: 'DELETE',
+            headers: new Headers({
+                'Content-Type': 'application/json'
+            })
+        })
+        .then((res) => res.json())
+        .then(() => {
+            //console.log(data);
+            this.getJobs()})
+    }
+
     job() {
         return this.state.jobs.map((job) => (
-                <>
-                <Card key = {job.id}>
+                <Col  style = {{paddingLeft: '2%', paddingRight: '2%'}} md = '4' key = {job.id}>
+                <Card>
                     <CardBody>
-                        <CardTitle>{job.company}</CardTitle>
+                        <CardTitle><h5>{job.company}</h5></CardTitle>
                         <CardText>
                             {job.jobtitle} <br/>
                             {job.description} <br />
@@ -40,15 +54,18 @@ export default class Job extends React.Component {
                         </CardText>
                     </CardBody>
                 </Card>
-                <br/>
-                </>
+                <Button color = 'danger' onClick = {(event) => {this.deleteJob(event, job.id)}}>Delete</Button>
+                </Col>
         ))
     }
     
     render(){
         return(
             <>
+            <h3>User Jobs</h3>
+            <Row>
             {this.job()}
+            </Row>
             </>
         )
     }

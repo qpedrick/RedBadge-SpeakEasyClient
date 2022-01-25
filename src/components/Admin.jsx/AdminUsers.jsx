@@ -1,7 +1,7 @@
 import React from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
-export default class Users extends React.Component {
+export default class AdminUsers extends React.Component {
     constructor(){
         super();
         this.state = {
@@ -115,16 +115,16 @@ export default class Users extends React.Component {
                     {user.role}
                     </Col>
                     <Col>
-                        <Button color = 'primary' onClick={(event) => this.makeMember(event, user.id)}>Member</Button>
+                        <Button color = 'secondary' onClick={(event) => this.makeGeneral(event, user.id)}>General</Button>
                     </Col>
                     <Col>
-                        <Button color = 'secondary' onClick={(event) => this.makeGeneral(event, user.id)}>General</Button>
+                        <Button color = 'primary' onClick={(event) => this.makeMember(event, user.id)}>Member</Button>
                     </Col>
                     <Col>
                         <Button color = 'warning' onClick={(event) => this.makeAdmin(event, user.id)}>Admin</Button>
                     </Col>
                     <Col>
-                        <Button color = 'danger' onClick={(event) => this.deleteUser(event, user.id)}>Delete User</Button>
+                        <Button color = 'danger' onClick={(event) => this.deleteUser(event, user.id)}>Delete</Button>
                     </Col>
                 </Row>
         ))

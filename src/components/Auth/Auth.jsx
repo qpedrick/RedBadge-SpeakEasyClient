@@ -3,6 +3,7 @@ import Login from './Login';
 import Register from "./Register";
 import { Col, Container, Row } from 'reactstrap'
 import './style.css'
+import GenInfo from "./GenInfo";
 
 export default class Auth extends React.Component {
     constructor(props){
@@ -17,11 +18,12 @@ export default class Auth extends React.Component {
             <Container>
                 <Row>
                     <Col>
+                        <GenInfo/>
+                    </Col>
+                    <Col style = {{background: '#CDDDDD', margin: '2%'}}>
                         <Register props = {this.props.props}/>
                     </Col>
-                    <Col>
-                    </Col>
-                    <Col>
+                    <Col style = {{background: '#CDDDDD'}}>
                         <Login props = {this.props.props}/>
                     </Col>
                 </Row>

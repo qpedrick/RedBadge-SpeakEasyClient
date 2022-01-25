@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Row, Card, CardTitle, CardBody, CardText } from 'reactstrap';
+import { Card, CardTitle, CardBody, CardText } from 'reactstrap';
 
 export default class Story extends React.Component {
     constructor(props){
@@ -29,22 +29,23 @@ export default class Story extends React.Component {
 
     story() {
         return this.state.stories.map((story) => (
-            <Col md = '4' key = {story.id}>
-                <Card>
+            <>
+                <Card key = {story.id}>
                     <CardBody>
                         <CardTitle>{story.title}</CardTitle>
                         <CardText>{story.description}</CardText>
                     </CardBody>
                 </Card>
-            </Col>
+            <br/>
+            </>
         ))
     }
     
     render(){
         return(
-            <Row>
+            <>
             {this.story()}
-            </Row>
+            </>
         )
     }
 }

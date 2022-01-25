@@ -1,6 +1,5 @@
 import React from 'react';
 import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap';
-import './style.css'
 
 export default class Stories extends React.Component {
     constructor(props){
@@ -29,7 +28,9 @@ export default class Stories extends React.Component {
             })
         })
         .then((res) => res.json())
-        .then((data) => this.setState({myStories: data}))
+        .then((data) => {
+            console.log(data)
+            this.getMyStories()})
         .catch(err => console.log(err))
         
     }
@@ -91,7 +92,7 @@ export default class Stories extends React.Component {
         .catch(err => console.log(err))
     }
 
-    displayMyStoryies() {
+    displayMyStories = () => {
         //console.log(this.state.myStories)
         return this.state.myStories.map((story) => (
             // <Col md = '4' key = {story.id}>
@@ -121,8 +122,6 @@ export default class Stories extends React.Component {
     render(){
         return(
             <>
-            {/* <h2>View your stories here:</h2>
-            <Row>{this.displayMyStoryies()}</Row> */}
             <Row style = {{paddingTop: '5%', paddingBottom: '5%', background: '#E6E1C5'}}>
                 <Col style = {{border: '5px solid black', marginLeft: '3%'}}>
                 <h3>Create a new Story here:</h3>
@@ -152,7 +151,7 @@ export default class Stories extends React.Component {
                 </Col>
                 <Col style = {{marginLeft: '5%', marginRight: '5%', border: '5px solid black'}}>
                     <h3>View your stories here:</h3>
-                    <Row>{this.displayMyStoryies()}</Row>
+                    <Row>{this.displayMyStories()}</Row>
                 </Col>
                 <Col style = {{border: '5px solid black', marginRight: '3%'}}>
                 <h3>Edit a Story here:</h3>

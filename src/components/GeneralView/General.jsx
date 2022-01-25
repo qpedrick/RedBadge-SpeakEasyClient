@@ -7,7 +7,7 @@ export default class General extends React.Component{
     render(){
         return(
             <>
-            <Row>
+            <Row style = {{background: '#CDDDDD', padding: '5%'}}>
                 <Col>
                     <h3>View Stories from our members!</h3>
                     <Story/>
