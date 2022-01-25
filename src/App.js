@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import React from 'react';
 import Member from './components/MemberView/Member';
 import General from './components/GeneralView/General';
+import Admin from './components/Admin.jsx/Admin';
 
 class App extends React.Component {
   constructor(){
@@ -26,11 +27,10 @@ class App extends React.Component {
       } else if (localStorage.getItem('role') === 'member') {
         return(
           <>
-        <h1>Member View</h1>
         <Member props = {this.state.sessionToken}/>
         </>)
       } else if (localStorage.getItem('role') === 'admin') {
-        return(<h1>Admin View</h1>)
+        return(<Admin />)
       } else {
         return (<Auth props = {this.session}/>)
       }

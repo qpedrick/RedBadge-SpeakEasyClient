@@ -1,5 +1,6 @@
 import React from 'react';
-import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap'
+import {Form, FormGroup, Row, Label, Input, Button, Col, Card, CardBody, CardTitle, CardText} from 'reactstrap';
+import './style.css'
 
 export default class Stories extends React.Component {
     constructor(props){
@@ -7,6 +8,8 @@ export default class Stories extends React.Component {
         this.state = {
             title: '',
             description: '',
+            newTitle: '',
+            newDescription: '',
             sessionToken: this.props.props,
             myStories: []
         }
@@ -78,8 +81,8 @@ export default class Stories extends React.Component {
                 'Authorization': `Bearer ${this.state.sessionToken}`
             }),
             body: JSON.stringify({
-                title: this.state.title,
-                description: this.state.description
+                title: this.state.newTitle,
+                description: this.state.newDescription
             })
         })
         .then((res) => res.json())
@@ -91,23 +94,23 @@ export default class Stories extends React.Component {
     displayMyStoryies() {
         //console.log(this.state.myStories)
         return this.state.myStories.map((story) => (
-            <Col md = '4' key = {story.id}>
-                <Card>
+            // <Col md = '4' key = {story.id}>
+                <Card key = {story.id}>
                     <CardBody>
                         <CardTitle>{story.title}</CardTitle>
                         <CardText>{story.description}</CardText>
                     </CardBody>
                     <Row>
                     <Col>
-                    <Button onClick={(event) => this.updateStory(event, story.id)}>Update Story</Button>
+                    <Button color = 'primary' onClick={(event) => this.updateStory(event, story.id)}>Update Story</Button>
                     </Col>
                     <Col></Col>
                     <Col>
-                    <Button onClick={(event) => this.deleteStory(event, story.id)}>Delete Story</Button>
+                    <Button color = 'danger' onClick={(event) => this.deleteStory(event, story.id)}>Delete Story</Button>
                     </Col>
                     </Row>
                 </Card>
-            </Col>
+            // {/* </Col> */}
         ))
     }
     
@@ -118,29 +121,61 @@ export default class Stories extends React.Component {
     render(){
         return(
             <>
-            <h2>Create a new Story here:</h2>
-            <Form onSubmit = {this.handleSubmit}>
-            <Row>
-                <FormGroup>
-                    <Label htmlFor='title'>Title</Label>
-                </FormGroup>
-                <FormGroup>
-                    <Input type = 'text' name = 'title' id = 'title' placeholder = 'Title' value = {this.state.title} onChange = {this.handleChange}/>
-                </FormGroup>
-                <FormGroup>
-                    <Label htmlFor='description'>Description</Label>
-                </FormGroup>
-                <FormGroup>
-                    <Input type = 'description' name = 'description' id = 'description' placeholder = 'description' value = {this.state.description} onChange={this.handleChange}/>
-                </FormGroup>
-                </Row>
-                <Row>
-                <Button type = 'submit' className = 'button' >Submit Job Posting</Button>
-                </Row>
-            </Form>
-            <br></br>
-            <h2>View your stories here:</h2>
-            <Row>{this.displayMyStoryies()}</Row>
+            {/* <h2>View your stories here:</h2>
+            <Row>{this.displayMyStoryies()}</Row> */}
+            <Row style = {{paddingTop: '5%', paddingBottom: '5%', background: '#E6E1C5'}}>
+                <Col style = {{border: '5px solid black', marginLeft: '3%'}}>
+                <h3>Create a new Story here:</h3>
+                    <Form onSubmit = {this.handleSubmit}>
+                    <Row>
+                        <FormGroup>
+                            <Label htmlFor='title'>Title</Label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type = 'text' name = 'title' id = 'title' placeholder = 'Title' value = {this.state.title} onChange = {this.handleChange}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor='description'>Description</Label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type = 'description' name = 'description' id = 'description' placeholder = 'Description' value = {this.state.description} onChange={this.handleChange}/>
+                        </FormGroup>
+                        </Row>
+                        <Row>
+                            <Col></Col>
+                            <Col>
+                                <Button color = 'success' type = 'submit' className = 'button' >Submit Job Posting</Button>
+                            </Col>
+                            <Col></Col>
+                        </Row>
+                    </Form>
+                </Col>
+                <Col style = {{marginLeft: '5%', marginRight: '5%', border: '5px solid black'}}>
+                    <h3>View your stories here:</h3>
+                    <Row>{this.displayMyStoryies()}</Row>
+                </Col>
+                <Col style = {{border: '5px solid black', marginRight: '3%'}}>
+                <h3>Edit a Story here:</h3>
+                    <Form>
+                    <Row>
+                        <FormGroup>
+                            <Label htmlFor='newTitle'>New Title</Label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type = 'text' name = 'newTitle' id = 'newTitle' placeholder = 'New Title' value = {this.state.newTitle} onChange = {this.handleChange}/>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label htmlFor='newdescription'>New Description</Label>
+                        </FormGroup>
+                        <FormGroup>
+                            <Input type = 'textbox' name = 'newDescription' id = 'newDescription' placeholder = 'New Description' value = {this.state.newDescription} onChange={this.handleChange}/>
+                        </FormGroup>
+                        </Row>
+                        <p>Once you fill in the new information you can click update story on the story you would like to edit.</p>
+                    </Form>
+                </Col>
+            </Row>
+            
             </>
         )
     }

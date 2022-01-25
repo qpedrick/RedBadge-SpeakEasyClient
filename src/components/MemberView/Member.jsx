@@ -10,7 +10,9 @@ export default class Member extends React.Component {
     render(){
         return(
             <>
+            <br />
             <Stories props = {this.props.props}/>
+            <br/>
             <Jobs props = {this.props.props}/>
             </>
         )

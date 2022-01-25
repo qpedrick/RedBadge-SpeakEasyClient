@@ -13,9 +13,9 @@ export default class Title extends React.Component {
     render() {
         return(
             <>
-                <h1>The Speak Easy</h1>
-            <Row>
+            <Row style = {{background: '#abcdef'}}>
                 <Col md = '9'>
+                    <h1 style = {{fontSize: '75px', textAlign: 'left'}}>The Speak Easy</h1>
                 </Col>
                 <Col md = '3'>
                     <Button onClick={this.clearLocal}>Logout</Button>
